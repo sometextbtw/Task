@@ -1,0 +1,74 @@
+body {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    height: 100vh;
+  }
+  
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .container {
+    background-color: rgba(255, 255, 255, 0.9); 
+    padding: 20px; 
+    border-radius: 10px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .select-icon,
+  .input-icon {
+    color: #555; 
+  }
+  
+  .button-icon {
+    border: none; 
+    background: none;
+    padding: 0;
+  }
+
+  .form-group {
+    margin-bottom: 10px; 
+  }
+
+  .tab-content {
+    margin-top: 20px; 
+  }
+
+  .dark-mode {
+    background-color: #444;
+    color: #ddd;
+  }
+  
+  .dark-mode h2,
+  .dark-mode label {
+    color: #222; 
+  }
+  .toggle-theme-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .dark-mode h2,
+.dark-mode label,
+.dark-mode .MuiTab-root {
+  color: #222;
+}
+
+.dark-mode .MuiMenu-paper {
+  background-color: #333;
+  color: #ddd;
+
+}
