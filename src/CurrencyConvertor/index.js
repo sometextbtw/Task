@@ -11,7 +11,9 @@ const Converter = () => {
     USD: 1,
     EUR: 0,
     BYN: 0,
-    RUB: 0
+    RUB: 0,
+    PLN: 0,
+    UAH: 0
   });
   const [exchangeRates, setExchangeRates] = useState({});
   const [selectedCurrency, setSelectedCurrency] = useState('');
@@ -73,7 +75,6 @@ const Converter = () => {
   const toggleDarkMode = () => {
     setIsDarkMode(prevMode => !prevMode);
 
-    // Изменение стилей фона в зависимости от темы
     const body = document.querySelector('body');
     if (isDarkMode) {
       body.style.background = 'linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)';
@@ -95,31 +96,33 @@ const Converter = () => {
       <div className="tab-content">
         {currentTab === 0 && (
           <div>
-            {Object.keys(amounts).map(currency => (
-              <div className="form-group" key={currency}>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <TextField
-                    value={currency} 
-                    disabled
-                    style={{ fontWeight: 'bold', width: '150px' }}
-                  />
-                  <TextField
-                    label={currencies[currency]}
-                    type="number"
-                    value={amounts[currency]}
-                    onChange={e => handleAmountChange(e, currency)}
-                    fullWidth
-                    style={{ width: '400px', color: isDarkMode ? '#ddd' : '#222' }}
-                  />
-                  {!baseCurrencies.includes(currency) && (
-                    <CloseIcon
-                      style={{ cursor: 'pointer', marginLeft: '10px' }}
-                      onClick={() => handleRemoveCurrency(currency)}
+            <div className="currency-list-container">
+              {Object.keys(amounts).map(currency => (
+                <div className="form-group" key={currency}>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <TextField
+                      value={currency} 
+                      disabled
+                      style={{ fontWeight: 'bold', width: '150px' }}
                     />
-                  )}
+                    <TextField
+                      label={currencies[currency]}
+                      type="number"
+                      value={amounts[currency]}
+                      onChange={e => handleAmountChange(e, currency)}
+                      fullWidth
+                      style={{ width: '400px', color: isDarkMode ? '#ddd' : '#222' }}
+                    />
+                    {!baseCurrencies.includes(currency) && (
+                      <CloseIcon
+                        style={{ cursor: 'pointer', marginLeft: '10px' }}
+                        onClick={() => handleRemoveCurrency(currency)}
+                      />
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
             <div style={{ marginTop: '20px' }}>
               <label>Добавить валюту:</label>
             </div>
@@ -132,24 +135,23 @@ const Converter = () => {
                 open={isMenuOpen}
                 onClose={() => setMenuOpen(false)}
                 PaperProps={{
-        style: {
-      backgroundColor: isDarkMode ? '#333' : '',
-      color: isDarkMode ? '#ddd' : '',
-    }
-  }}
->
-  {availableCurrencies.map(currency => (
-    <MenuItem key={currency} onClick={() => handleAddCurrency(currency)}>
-      {`${currency} - ${currencies[currency]}`}
-    </MenuItem>
-  ))}
-</Menu>
-
+                  style: {
+                    backgroundColor: isDarkMode ? '#333' : '',
+                    color: isDarkMode ? '#ddd' : '',
+                  }
+                }}
+              >
+                {availableCurrencies.map(currency => (
+                  <MenuItem key={currency} onClick={() => handleAddCurrency(currency)}>
+                    {`${currency} - ${currencies[currency]}`}
+                  </MenuItem>
+                ))}
+              </Menu>
             </div>
           </div>
         )}
         {currentTab === 1 && (
-          <div>
+          <div className="currency-rates-container">
             <h3 style={{ color: isDarkMode ? '#ddd' : '#222' }}>Курсы валют по отношению к {baseCurrency}</h3>
             {Object.keys(exchangeRates).map(currency => (
               <div className="form-group" key={currency}>
