@@ -76,10 +76,10 @@ const Converter = () => {
               label={currencies[currency]}
               type="number"
               value={exchangeRates[currency]}
-              onChange={e => handleAmountChange(e, currency)}
               fullWidth
               style={{ width: '400px', color: isDarkMode ? '#ddd' : '#222' }}
               InputProps={{
+                readOnly: true,
                 startAdornment: (
                   <InputAdornment position="start">
                     {currency}
@@ -91,6 +91,7 @@ const Converter = () => {
         ))}
       </div>
     );
+    
     
   
     
