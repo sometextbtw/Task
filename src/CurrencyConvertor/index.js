@@ -14,7 +14,7 @@ const Converter = () => {
     BYN: 0,
     RUB: 0,
     UAH: 0,
-    PLN: 0,
+    UAH: 0,
   });
   const [selectedCurrency, setSelectedCurrency] = useState('');
   const baseCurrency = 'USD';
